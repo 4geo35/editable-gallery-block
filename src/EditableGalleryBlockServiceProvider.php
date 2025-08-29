@@ -3,6 +3,9 @@
 namespace GIS\EditableGalleryBlock;
 
 use GIS\EditableBlocks\Traits\ExpandBlocksTrait;
+use GIS\EditableGalleryBlock\Helpers\GalleryBlockRenderActionsManager;
+use GIS\EditableGalleryBlock\Models\GalleryBlockRecord;
+use GIS\EditableGalleryBlock\Observers\GalleryBlockRecordObserver;
 use GIS\Fileable\Traits\ExpandTemplatesTrait;
 use Illuminate\Support\ServiceProvider;
 class EditableGalleryBlockServiceProvider extends ServiceProvider
@@ -13,6 +16,7 @@ class EditableGalleryBlockServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->mergeConfigFrom(__DIR__ . "/config/editable-gallery-block.php", 'editable-gallery-block');
+        $this->initFacades();
     }
 
     public function boot(): void
@@ -20,6 +24,10 @@ class EditableGalleryBlockServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'egb');
         $this->addLivewireComponents();
         $this->expandConfiguration();
+
+        $galleryRecordClass = config("editable-gallery-block.customGalleryBlockRecordModel") ?? GalleryBlockRecord::class;
+        $galleryRecordObserverClass = config("editable-gallery-block.customGalleryBlockRecordModelObserverClass") ?? GalleryBlockRecordObserver::class;
+        $galleryRecordClass::observe($galleryRecordObserverClass);
     }
 
     protected function addLivewireComponents(): void
@@ -32,5 +40,13 @@ class EditableGalleryBlockServiceProvider extends ServiceProvider
         $this->expandBlocks($egb);
         $this->expandBlockRender($egb);
         $this->expandTemplates($egb);
+    }
+
+    protected function initFacades(): void
+    {
+        $this->app->singleton("gallery-block-render-actions", function () {
+            $managerClass = config("editable-gallery-block.customBlockRenderActionsManager") ?? GalleryBlockRenderActionsManager::class;
+            return new $managerClass;
+        });
     }
 }
