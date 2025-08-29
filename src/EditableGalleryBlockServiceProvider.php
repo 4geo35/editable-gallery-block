@@ -4,10 +4,13 @@ namespace GIS\EditableGalleryBlock;
 
 use GIS\EditableBlocks\Traits\ExpandBlocksTrait;
 use GIS\EditableGalleryBlock\Helpers\GalleryBlockRenderActionsManager;
+use GIS\EditableGalleryBlock\Livewire\Admin\Types\GalleryWire;
 use GIS\EditableGalleryBlock\Models\GalleryBlockRecord;
 use GIS\EditableGalleryBlock\Observers\GalleryBlockRecordObserver;
 use GIS\Fileable\Traits\ExpandTemplatesTrait;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+
 class EditableGalleryBlockServiceProvider extends ServiceProvider
 {
     use ExpandBlocksTrait, ExpandTemplatesTrait;
@@ -32,6 +35,11 @@ class EditableGalleryBlockServiceProvider extends ServiceProvider
 
     protected function addLivewireComponents(): void
     {
+        $component = config("editable-gallery-block.customGalleryComponent");
+        Livewire::component(
+            "egb-gallery",
+            $component ?? GalleryWire::class
+        );
     }
 
     protected function expandConfiguration(): void
