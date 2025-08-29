@@ -27,5 +27,9 @@ return [
     "customGalleryComponent" => null,
 
     // Templates
-    "templates" => [],
+    "templates" => [
+        "gallery-record" => \GIS\EditableGalleryBlock\Templates\GalleryRecord::class,
+
+        "gallery-record-right" => \GIS\EditableGalleryBlock\Templates\GalleryRecordRight::class,
+    ],
 ];

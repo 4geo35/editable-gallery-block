@@ -1,6 +1,7 @@
 <?php
 
 namespace GIS\EditableGalleryBlock\Livewire\Admin\Types;
+
 use GIS\EditableBlocks\Traits\CheckBlockAuthTrait;
 use GIS\EditableBlocks\Traits\EditBlockTrait;
 use GIS\EditableGalleryBlock\Interfaces\GalleryBlockRecordInterface;
