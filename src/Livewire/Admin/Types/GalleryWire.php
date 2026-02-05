@@ -19,6 +19,8 @@ class GalleryWire extends Component
     public int|null $itemId = null;
     public string $title = "";
     public string $description = "";
+    public bool $isVertical = false;
+    public bool $showSignatures = false;
 
     public function rules(): array
     {
@@ -63,6 +65,8 @@ class GalleryWire extends Component
         $galleryRecordModelClass = config("editable-gallery-block.customGalleryBlockRecordModel") ?? GalleryBlockRecord::class;
         $record = $galleryRecordModelClass::create([
             "description" => $this->description,
+            "is_vertical" => $this->isVertical ? now() : null,
+            "show_signatures" => $this->showSignatures ? now() : null,
         ]);
         /**
          * @var GalleryBlockRecordInterface $record
@@ -87,6 +91,9 @@ class GalleryWire extends Component
 
         $this->title = $item->title;
         $this->description = $record->description;
+        $this->isVertical = (bool) $record->is_vertical;
+        $this->showSignatures = (bool) $record->show_signatures;
+
         $this->displayData = true;
     }
 
@@ -102,6 +109,8 @@ class GalleryWire extends Component
         $this->validate();
         $record->update([
             "description" => $this->description,
+            "is_vertical" => $this->isVertical ? now() : null,
+            "show_signatures" => $this->showSignatures ? now() : null,
         ]);
         $item->update([
             "title" => $this->title,
@@ -113,6 +122,6 @@ class GalleryWire extends Component
 
     protected function resetFields(): void
     {
-        $this->reset("itemId", "title", "description");
+        $this->reset("itemId", "title", "description", "isVertical", "showSignatures");
     }
 }

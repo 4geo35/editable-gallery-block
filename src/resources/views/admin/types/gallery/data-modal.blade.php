@@ -34,6 +34,22 @@
                 </div>
             </div>
 
+            <div class="form-check">
+                <input type="checkbox" wire:model="isVertical" id="galleryBlockIsVertical"
+                       class="form-check-input {{ $errors->has('isVertical') ? 'border-danger' : '' }}"/>
+                <label for="galleryBlockIsVertical" class="form-check-label">
+                    Использовать вертикальную ориентацию изображений
+                </label>
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" wire:model="showSignatures" id="galleryBlockShowSignatures"
+                       class="form-check-input {{ $errors->has('showSignatures') ? 'border-danger' : '' }}"/>
+                <label for="galleryBlockShowSignatures" class="form-check-label">
+                    Отображать подписи изображений при выводе
+                </label>
+            </div>
+
             <div class="flex items-center space-x-indent-half">
                 <button type="button" class="btn btn-outline-dark" wire:click="closeData">
                     Отмена

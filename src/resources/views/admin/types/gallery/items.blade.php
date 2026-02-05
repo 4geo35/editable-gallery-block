@@ -7,14 +7,14 @@
                     @include("eb::admin.types.includes.edit-delete-buttons")
                 </div>
             </div>
-            <livewire:fa-images :model="$item->recordable"
-                                postfix="GalleryBlock{{ $item->id }}-{{ $item->recordable->id }}"
-                                no-card-cover wire:key="{{ $item->id }}--{{ $item->recordable->id }}" />
-            <div class="mb-indent-half"></div>
             <div class="card-body">
                 @include("egb::admin.types.gallery.item")
                 @include("eb::admin.types.includes.help-info")
             </div>
+            <div class="border-b border-stroke"></div>
+            <livewire:fa-images :model="$item->recordable"
+                                postfix="GalleryBlock{{ $item->id }}-{{ $item->recordable->id }}"
+                                no-card-cover wire:key="{{ $item->id }}--{{ $item->recordable->id }}" />
         </div>
     @endforeach
 </div>

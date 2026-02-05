@@ -14,5 +14,7 @@ class GalleryBlockRecord extends Model implements GalleryBlockRecordInterface
 
     protected $fillable = [
         "description",
+        "is_vertical",
+        "show_signatures",
     ];
 }
