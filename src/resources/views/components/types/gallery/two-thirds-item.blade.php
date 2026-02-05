@@ -1,6 +1,7 @@
 @props(["item"])
 @php
     $hasDescription = (bool) $item->recordable->description;
+    $grid = $item->recordable->is_vertical ? 'w-1/2 xs:w-1/3 xl:w-1/4' : 'w-1/2 xl:w-1/3';
 @endphp
 <div>
     @if ($item->title)
@@ -13,7 +14,7 @@
     @endif
     <div class="row">
         @foreach($item->recordable->orderedImages as $image)
-            <div class="col w-1/2 xl:w-1/3 mb-indent">
+            <div class="col {{ $grid }} mb-indent">
                 <x-egb::item.image :$item :$image />
             </div>
         @endforeach
