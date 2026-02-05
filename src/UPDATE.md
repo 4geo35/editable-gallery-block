@@ -3,3 +3,4 @@
 Добавлены настройки отображения для блока
 
     php artisan migrate
+    php artisan thumb:clear --template=gallery-record
