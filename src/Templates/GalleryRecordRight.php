@@ -10,6 +10,6 @@ class GalleryRecordRight implements ModifierInterface
 {
     public function apply(ImageInterface $image): ImageInterface
     {
-        return $image->cover(464, 320);
+        return $image->cover(464, 260);
     }
 }

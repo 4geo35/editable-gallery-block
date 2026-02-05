@@ -1,6 +1,7 @@
 @props(["item"])
 @php
     $hasDescription = (bool) $item->recordable->description;
+    $grid = $item->recordable->is_vertical ? 'w-1/2 xs:w-1/3 lg:w-1/4 xl:w-1/5' : 'w-1/2 lg:w-1/3 xl:w-1/4';
 @endphp
 <div>
     @if ($item->title)
@@ -24,10 +25,8 @@
     @endif
     <div class="row">
         @foreach($item->recordable->orderedImages as $image)
-            <div class="col w-1/2 lg:w-1/3 xl:w-1/4 {{ $loop->first && $hasDescription ? 'lg:hidden' : '' }} mb-indent">
-                <a data-fslightbox="lightbox-{{ $item->id }}" href="{{ route('thumb-img', ['template' => 'original', 'filename' => $image->file_name]) }}">
-                    <img src="{{ route('thumb-img', ['template' => 'gallery-record', 'filename' => $image->file_name]) }}" alt="" class="rounded-base">
-                </a>
+            <div class="col {{ $grid }} {{ $loop->first && $hasDescription ? 'lg:hidden' : '' }} mb-indent">
+                <x-egb::item.image :$item :$image />
             </div>
         @endforeach
     </div>

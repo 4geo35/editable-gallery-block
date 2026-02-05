@@ -29,6 +29,7 @@ return [
     // Templates
     "templates" => [
         "gallery-record" => \GIS\EditableGalleryBlock\Templates\GalleryRecord::class,
+        "gallery-record-vertical" => \GIS\EditableGalleryBlock\Templates\GalleryRecordVertical::class,
 
         "gallery-record-right" => \GIS\EditableGalleryBlock\Templates\GalleryRecordRight::class,
     ],
