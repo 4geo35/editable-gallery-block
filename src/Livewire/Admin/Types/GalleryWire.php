@@ -4,6 +4,7 @@ namespace GIS\EditableGalleryBlock\Livewire\Admin\Types;
 
 use GIS\EditableBlocks\Traits\CheckBlockAuthTrait;
 use GIS\EditableBlocks\Traits\EditBlockTrait;
+use GIS\EditableBlocks\Traits\PlaceholderBlockTrait;
 use GIS\EditableGalleryBlock\Interfaces\GalleryBlockRecordInterface;
 use GIS\EditableGalleryBlock\Models\GalleryBlockRecord;
 use Illuminate\View\View;
@@ -11,7 +12,7 @@ use Livewire\Component;
 
 class GalleryWire extends Component
 {
-    use EditBlockTrait, CheckBlockAuthTrait;
+    use EditBlockTrait, CheckBlockAuthTrait, PlaceholderBlockTrait;
 
     public bool $displayData = false;
     public bool $displayDelete = false;
