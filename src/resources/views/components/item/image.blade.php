@@ -1,6 +1,6 @@
 @props(["item", "image"])
 @php($template = $item->recordable->is_vertical ? "gallery-record-vertical" : "gallery-record")
-<div class="relative h-full">
+<div class="relative h-full min-h-[40px]">
     <a data-fslightbox="lightbox-{{ $item->id }}"
        href="{{ route('thumb-img', ['template' => 'original', 'filename' => $image->file_name]) }}">
         <img src="{{ route('thumb-img', ['template' => $template, 'filename' => $image->file_name]) }}" alt=""
