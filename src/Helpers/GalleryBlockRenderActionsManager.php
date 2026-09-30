@@ -8,6 +8,6 @@ class GalleryBlockRenderActionsManager
 {
     public function expandGalleryBlockRecord(GalleryBlockRecordInterface $record): void
     {
-        $record->load("images");
+        $record->load("orderedImages");
     }
 }
